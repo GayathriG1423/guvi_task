@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="style3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+  <title>Guvi</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $('#reg_form').on('submit', function(e){
+        e.preventDefault();
+        $.ajax({
+          type: 'POST',
+          url: 'db_conn1.php',
+          data: $('#reg_form').serialize(),
+          success: function(response){
+            console.log(response);
+            window.location.href = "login1.html";
+            $('#reg_form')[0].reset();
+          },
+          error: function(error){
+            console.log(error);
+            alert('Registration failed!');
+          }
+        });
+      });
+    });
+  </script>
+</head>
+<body style="background-color: #CBD5F0;">
+  <div class="signup-form" id="frm">
+    <form id="reg_form" method="post">
+      <h2>Register</h2>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Username" required="required" name="username">
+      </div>
+      <div class="form-group">
+        <input type="email" class="form-control" name="email" placeholder="Email" required="required">
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" name="password_1" placeholder="Type a new password" required="required">
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" name="password_2" placeholder="Confirm password" required="required">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" name="landmark" placeholder="Landmark" required="required">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" name="pincode" placeholder="Pincode" required="required">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" name="address" placeholder="Addresss" required="required">
+      </div>
+      <div class="form-group" id="btn">
+        <button type="submit" class="btn btn-success btn-lg btn-block" name="reg_user">Register</button>
+      </div>
+      <p>
+        Already a user? <a href="login1.html">Sign in</a>
+      </p>
+    </form>
+  </div>
+</body>
+</html>

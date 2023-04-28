@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="style3.css">
+<title>My Profile</title>
+<script src="http://code.jquery.com/jquery-2.1.1.js"></script>
+<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+</head>
+<body style="background-color: #CBD5F0;">
+<body>
+    <form id="update-profile-form">
+      <h1>Update your profile</h1>
+      <label>Username: </label>
+
+
+        <input type="text" name="name" value="">
+        <label>Email: </label>
+        <input type="email" name="email" value="">
+        <label>Landmark: </label>
+        <input type="text" name="landmark" value="">
+        <label>Pincode: </label>
+        <input type="text" name="pincode" value="">
+        <label>Address: </label>
+        <input type="text" name="address" value="">
+        <label>DOB: </label>
+        <input type="text" name="dob" value="">
+        <label>Age: </label>
+        <input type="text" name="age" value="">
+        <label>Contact: </label>
+        <input type="text" name="contact" value="">
+        <button type="submit" style="background-color: #EFB7BA;
+        color: #fff;
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 0.25rem;
+        cursor: pointer;">Update Profile<a href="profile.html"></a></button>
+    </form>
+</body>
+</html>
+<script>
+$(document).ready(function() {
+           // get the id parameter from the URL
+           const params = new URLSearchParams(window.location.search);
+           const id = params.get('id');
+           // collect data from table
+         //  var id = $("#id").val();
+           //console.log(id);
+
+           // submit the form using AJAX
+           $("#update-profile-form").submit(function(e) {
+               e.preventDefault(); // prevent default form submission
+
+               // collect data from form
+               var name = $("input[name='name']").val();
+               var email = $("input[name='email']").val();
+               var landmark = $("input[name='landmark']").val();
+               var pincode = $("input[name='pincode']").val();
+               var address = $("input[name='address']").val();
+               var dob = $("input[name='dob']").val();
+               var age = $("input[name='age']").val();
+               var contact = $("input[name='contact']").val();
+
+               // send data to server using AJAX
+               $.ajax({
+                   url: 'update2.php',
+                   method: 'POST',
+                   data: {
+                       id: id,
+                       name: name,
+                       email: email,
+                       landmark:landmark,
+                       pincode:pincode,
+                       address:address,
+                       dob:dob,
+                       age:age,
+                       contact: contact
+                   },
+                   success: function(response) {
+                       // handle success response
+                      // alert(response);
+                       window.location.href = "profile.html";
+                   },
+                   error: function(xhr, status, error) {
+                       // handle error response
+                       alert("Error: " + error);
+                   }
+               });
+           });
+       });
+
+</script>
